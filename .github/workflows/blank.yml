@@ -11,10 +11,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: actions/checkout@v2
       - name: Eliminar imágenes antiguas
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.0.72
-          inlineScript: |
+        run: |
             registry_name="gitacrwest001"
             imagen_list=$(az acr repository show-tags --name $registry_name --repository agentrunner --orderby time_desc --output tsv)
             echo "Lista de imágenes: $imagen_list"
