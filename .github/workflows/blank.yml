@@ -1,0 +1,32 @@
+name: "Eliminar imágenes antiguas de Azure Container Registry"
+on: [workflow_dispatch]
+
+jobs:
+  eliminar-imagenes-antiguas:
+    runs-on: [self-hosted, linux, X64, AgentRunnerZun] 
+    steps:
+      - name: 'Login via Azure CLI'
+        uses:  azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: actions/checkout@v2
+      - name: Eliminar imágenes antiguas
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+            registry_name="gitacrwest001"
+            imagen_list=$(az acr repository show-tags --name $registry_name --repository agentrunner --orderby time_desc --output tsv)
+            echo "Lista de imágenes: $imagen_list"
+            imagen_count=$(echo "$imagen_list" | wc -l)
+            echo "Número de imágenes: $imagen_count"
+            if [ $imagen_count -gt 3 ]
+            then
+              imagenes_a_eliminar=$(echo "$imagen_list" | tail -n +4)
+              echo "Imágenes a eliminar: $imagenes_a_eliminar"
+              for imagen in $imagenes_a_eliminar
+              do
+                az acr repository delete --name $registry_name --image $imagen --yes
+              done
+            else
+              echo
