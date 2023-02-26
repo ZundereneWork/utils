@@ -26,4 +26,5 @@ jobs:
                 az acr repository delete --name $registry_name --image $imagen --yes
               done
             else
-              echo
+              echo "No hay imágenes para eliminar"
+            fi
