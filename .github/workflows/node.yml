@@ -17,7 +17,7 @@ jobs:
       fail-fast: true
     runs-on: ${{ matrix.os }}
     env:
-      ISU: ${{matrix.is_ubuntu_8}}
+      ISU: ${{matrix.is_ubuntu_20}}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
