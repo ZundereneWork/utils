@@ -7,7 +7,7 @@ jobs:
       matrix: 
         os: [self-hosted, ubuntu-latest]
         nodejs: [10,18,16]
-        excludes: 
+        exclude: 
           - os :  ubuntu-latest
             nodejs : 6
       fail-fast: true
