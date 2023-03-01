@@ -2,7 +2,7 @@ name: "Read secret file"
 on: [workflow_dispatch]
 
 jobs:
-  eliminar-imagenes-antiguas:
+  nodejs:
     runs-on: [self-hosted, linux, X64, AgentRunnerZun] 
     steps:
       - name: 'Login via Azure CLI'
