@@ -1,0 +1,17 @@
+name: "Read secret file"
+on: [workflow_dispatch]
+
+jobs:
+  eliminar-imagenes-antiguas:
+    runs-on: [self-hosted, linux, X64, AgentRunnerZun] 
+    steps:
+      - name: 'Login via Azure CLI'
+        uses:  azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: 'Descript file used gpg'
+        run: gpg --quiet --batch
+        env:
+          PASSPHASE: ${{ secrets.PASSPHASE }}
+
+      
