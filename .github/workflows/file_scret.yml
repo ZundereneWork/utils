@@ -10,7 +10,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: 'Descript file used gpg'
-        run: gpg --quiet --batch --yes --decrypt --passpharase="$PASSPHASE" --output $HOME/secret.json fichero_nomal.json.gpg
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHASE" --output $HOME/secret.json fichero_nomal.json.gpg
         env:
           PASSPHASE: ${{ secrets.PASSPHASE }}
       - name: 'Read Secret'
