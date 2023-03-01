@@ -8,8 +8,8 @@ jobs:
         os: [self-hosted, ubuntu-latest]
         node_version: [10,18,16]
         include:
-          - os: ubuntu-latest
-            node_version: 18
+          - os: self-hosted
+            node_version: 16
             is_ubuntu_20: "true"
         excludes: 
           - os :  ubuntu-latest
