@@ -7,9 +7,7 @@ jobs:
       matrix: 
         os: [self-hosted, ubuntu-latest]
         nodejs: [10,18,16]
-        exclude: 
-          - os :  ubuntu-latest
-            nodejs : 6
+  
       fail-fast: true
     runs-on: ${{ nodejs.os }}
     steps:
