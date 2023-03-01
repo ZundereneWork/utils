@@ -23,6 +23,7 @@ jobs:
               echo "Imágenes a eliminar: $imagenes_a_eliminar"
               for imagen in $imagenes_a_eliminar
               do
+                echo "Imagen $imagen"
                 az acr repository delete --name $registry_name --image $imagen --yes
               done
             else
