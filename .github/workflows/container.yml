@@ -6,7 +6,7 @@ jobs:
   node-docker:
     runs-on: self-hosted
     container:  
-      image: node:13.5.0-alpine3.10
+      image: node:alpine
     steps:
       - name: Log node version 
         run: |
