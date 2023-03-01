@@ -1,27 +1,22 @@
-name: "Read secret file"
+name: "nodejs"
 on: [workflow_dispatch]
 
 jobs:
   nodejs:
-    runs-on: [self-hosted, linux, X64, AgentRunnerZun] 
+    strategy:
+      matrix: 
+        os: [self-hosted, ubuntu-latest]
+        nodejs: [10,18,16]
+      fail-fast: true
+    runs-on: ${{ nodejs.os }}
     steps:
-      - name: 'Login via Azure CLI'
-        uses:  azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: 'Descript file used gpg'
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHASE" --output $HOME/secret.json fichero_nomal.json.gpg
-        env:
-          PASSPHASE: ${{ secrets.PASSPHASE }}
-      - name: 'Read Secret'
-        run: cat $HOME/secret.json
-
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ nodejs.nodejs}}
       - run: npm ci
       - run: npm test
+      - run: node -v
 
       
 
