@@ -11,7 +11,7 @@ jobs:
           - os :  ubuntu-latest
             node_version : 6
       fail-fast: true
-    runs-on: ${{ nodejs.os }}
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
