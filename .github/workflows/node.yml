@@ -2,14 +2,14 @@ name: "nodejs"
 on: [workflow_dispatch]
 
 jobs:
-  nodejs:
+  node_version:
     strategy:
       matrix: 
         os: [self-hosted, ubuntu-latest]
-        nodejs: [10,18,16]
+        node_version: [10,18,16]
         excludes: 
           - os :  ubuntu-latest
-            nodejs : 6
+            node_version : 6
       fail-fast: true
     runs-on: ${{ nodejs.os }}
     steps:
