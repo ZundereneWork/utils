@@ -24,7 +24,7 @@ jobs:
               for imagen in $imagenes_a_eliminar
               do
                 echo "Imagen $imagen"
-                az acr repository delete --name $registry_name --image "$imagen" --yes
+                az acr repository delete --name $registry_name --image "agentrunner:$imagen" --yes
               done
             else
               echo "No hay imágenes para eliminar"
